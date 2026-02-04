@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 1. SCROLL SUAVE FORÇADO */
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 80px; /* Compensa a altura da Navbar fixa */
+}
+
+body {
+  @apply bg-gym-black text-white antialiased font-sans overflow-x-hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gym-black;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gym-crimson rounded-full hover:bg-gym-red transition-colors;
+}
+
+@layer utilities {
+  .clip-path-slant {
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  
+  .neon-border {
+    box-shadow: 0 0 5px theme('colors.gym-crimson'), 
+                0 0 10px theme('colors.gym-red');
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 15px rgba(255, 46, 0, 0.6);
+  }
+  
+  .gold-glow {
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+  }
+
+  /* 2. TEXTURA CYBER GRID (Ajustada para suavizar o fundo) */
+  .bg-cyber-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    /* Máscara radial para que o grid suma nas bordas (foco no centro) */
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  }
+
+  /* 3. VINHETA (Suaviza as bordas pretas) */
+  .vignette {
+    background: radial-gradient(circle, transparent 40%, rgba(11, 14, 20, 0.9) 100%);
+    pointer-events: none;
+  }
+}
