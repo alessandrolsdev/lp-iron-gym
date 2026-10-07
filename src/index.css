@@ -1,64 +1,547 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* 1. SCROLL SUAVE FORÇADO */
-html {
-  scroll-behavior: smooth !important;
-  scroll-padding-top: 80px; /* Compensa a altura da Navbar fixa */
+:root {
+  font-family: Arial, sans-serif;
+  font-synthesis: none;
+  color: #eeeade;
+  background: #262822;
 }
-
+* {
+  box-sizing: border-box;
+}
 body {
-  @apply bg-gym-black text-white antialiased font-sans overflow-x-hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
 }
-
-/* Scrollbar Personalizada */
-::-webkit-scrollbar {
-  width: 8px;
+img {
+  display: block;
+  max-width: 100%;
 }
-::-webkit-scrollbar-track {
-  @apply bg-gym-black;
+a {
+  color: inherit;
+  text-decoration: none;
 }
-::-webkit-scrollbar-thumb {
-  @apply bg-gym-crimson rounded-full hover:bg-gym-red transition-colors;
+button {
+  font: inherit;
 }
-
-@layer utilities {
-  .clip-path-slant {
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+html {
+  scroll-behavior: smooth;
+}
+a,
+button {
+  touch-action: manipulation;
+}
+.iron-page {
+  --paper: #eeeade;
+  --ink: #262822;
+  --red: #b83d26;
+}
+.frame {
+  width: min(1300px, 90%);
+  margin: auto;
+}
+.iron-page :focus-visible {
+  outline: 3px solid #d5a979;
+  outline-offset: 5px;
+}
+.skip {
+  position: fixed;
+  left: 20px;
+  top: -100px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 16px;
+  z-index: 100;
+}
+.skip:focus {
+  top: 10px;
+}
+.iron-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #606155;
+  padding: 25px 0;
+  gap: 20px;
+}
+.iron-logo {
+  font:
+    900 30px/0.8 Impact,
+    "Arial Narrow",
+    sans-serif;
+  letter-spacing: -1px;
+}
+.iron-logo span {
+  display: block;
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin-top: 9px;
+}
+.iron-header nav {
+  display: flex;
+  gap: 35px;
+  font-size: 11px;
+}
+.menu-button {
+  display: none;
+}
+.hero-topline {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  padding: 25px 0;
+  gap: 20px;
+}
+.hero-topline p {
+  margin: 0;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 65px;
+  padding: 35px 0 60px;
+  align-items: center;
+}
+.iron-page h1,
+.iron-page h2 {
+  font-family: Impact, "Arial Narrow", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 0.94;
+  margin: 0 0 35px;
+}
+.iron-page h1 {
+  font-size: clamp(80px, 9.5vw, 145px);
+}
+.iron-page em {
+  font-style: normal;
+  color: #d5a979;
+}
+.hero-description {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+.iron-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 19px 24px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.iron-button:hover {
+  background: #d5a979;
+}
+.weight-poster {
+  background: var(--red);
+  padding: 26px;
+  color: var(--paper);
+  transform: rotate(3deg);
+  position: relative;
+  animation: poster-enter 0.85s both;
+}
+.poster-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.weight-poster svg {
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+}
+.weight-poster > p {
+  font:
+    900 clamp(35px, 4vw, 57px)/0.98 Impact,
+    "Arial Narrow",
+    sans-serif;
+  margin: 0 0 20px;
+  letter-spacing: -1px;
+}
+.poster-caption {
+  font-size: 11px;
+}
+.hero-rule {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #606155;
+  padding: 24px 0;
+  font-size: 11px;
+}
+.iron-manifesto {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 95px 0;
+}
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 65px;
+}
+.tag {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin: 0 0 30px;
+}
+.iron-page h2 {
+  font-size: clamp(52px, 6vw, 85px);
+}
+.iron-manifesto em {
+  color: var(--red);
+}
+.manifesto-grid > div > p {
+  max-width: 530px;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 45px;
+}
+.iron-values {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: 11px;
+}
+.iron-values span {
+  padding: 18px 0;
+  border-top: 1px solid #babbae;
+}
+.iron-classes {
+  padding: 95px 0;
+}
+.section-title {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 65px;
+}
+.class-list article {
+  display: grid;
+  grid-template-columns: 50px 1fr 1fr 30px;
+  gap: 30px;
+  align-items: center;
+  border-top: 1px solid #606155;
+  padding: 30px 0;
+}
+.class-no {
+  font-size: 11px;
+  color: #d5a979;
+}
+.class-list h3 {
+  font:
+    900 32px Impact,
+    "Arial Narrow",
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.class-list p {
+  font-size: 13px;
+  color: #d0d0c0;
+  line-height: 1.7;
+  margin: 0;
+}
+.class-list a {
+  font-size: 28px;
+}
+.iron-pricing {
+  background: #ded9c9;
+  color: var(--ink);
+  padding: 95px 0;
+}
+.iron-pricing em {
+  color: var(--red);
+}
+.pricing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 35px;
+}
+.pricing-header > p {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 290px;
+  margin-bottom: 35px;
+}
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.plan {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 20px;
+  border-top: 1px solid #9e9e8d;
+  border-bottom: 1px solid #9e9e8d;
+  border-left: 1px solid #9e9e8d;
+}
+.plan:last-child {
+  border-right: 1px solid #9e9e8d;
+}
+.plan.featured {
+  background: var(--ink);
+  color: var(--paper);
+}
+.plan-frequency {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 20px;
+}
+.plan h3 {
+  font:
+    900 28px Impact,
+    "Arial Narrow",
+    sans-serif;
+  margin: 0 0 25px;
+}
+.price {
+  font:
+    900 39px Impact,
+    "Arial Narrow",
+    sans-serif;
+  margin: 0 0 30px;
+  white-space: nowrap;
+}
+.price small {
+  font: 11px Arial;
+  margin-right: 4px;
+}
+.price span {
+  font: 10px Arial;
+  margin-left: 4px;
+}
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+  flex: 1;
+}
+.plan li {
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 10px 0;
+  border-top: 1px solid #9e9e8d;
+}
+.plan .iron-button {
+  border: 1px solid var(--ink);
+  gap: 10px;
+  padding: 15px;
+}
+.plan.featured .iron-button {
+  border-color: var(--paper);
+}
+.iron-contact {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 90px;
+  padding: 100px 0;
+}
+.contact-details {
+  padding-top: 15px;
+}
+.contact-details > p:not(.tag) {
+  font-size: 18px;
+  line-height: 1.8;
+}
+.contact-details > a {
+  display: block;
+  font-size: 13px;
+  margin: 16px 0;
+  width: fit-content;
+  border-bottom: 1px solid #737567;
+  padding-bottom: 6px;
+}
+.contact-details hr {
+  border: 0;
+  border-top: 1px solid #606155;
+  margin: 35px 0;
+}
+.iron-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #606155;
+  gap: 25px;
+  padding: 30px 0;
+}
+.iron-footer > span,
+.iron-footer > p {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.iron-page section {
+  scroll-margin-top: 20px;
+}
+@keyframes poster-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) rotate(0);
   }
-  
-  .neon-border {
-    box-shadow: 0 0 5px theme('colors.gym-crimson'), 
-                0 0 10px theme('colors.gym-red');
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(3deg);
   }
-  
-  .text-glow {
-    text-shadow: 0 0 15px rgba(255, 46, 0, 0.6);
+}
+@media (max-width: 900px) {
+  .plan-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .gold-glow {
-    text-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+  .plan:nth-child(2) {
+    border-right: 1px solid #9e9e8d;
   }
-
-  /* 2. TEXTURA CYBER GRID (Ajustada para suavizar o fundo) */
-  .bg-cyber-grid {
-    background-size: 40px 40px;
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    /* Máscara radial para que o grid suma nas bordas (foco no centro) */
-    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  .plan:nth-child(n + 3) {
+    border-top: 0;
   }
-
-  /* 3. VINHETA (Suaviza as bordas pretas) */
-  .vignette {
-    background: radial-gradient(circle, transparent 40%, rgba(11, 14, 20, 0.9) 100%);
-    pointer-events: none;
+  .hero-grid {
+    gap: 35px;
+  }
+  .weight-poster {
+    padding: 20px;
+  }
+  .class-list {
+    margin-top: 20px;
+  }
+  .class-list article {
+    grid-template-columns: 35px 1fr 30px;
+    gap: 15px;
+  }
+  .class-list p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .class-list a {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+@media (max-width: 650px) {
+  .iron-header {
+    position: relative;
+  }
+  .menu-button {
+    display: block;
+    background: transparent;
+    border: 1px solid #737567;
+    color: var(--paper);
+    padding: 12px;
+    font-size: 12px;
+  }
+  .iron-header nav {
+    display: none;
+  }
+  .iron-header nav.open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: 25px;
+    background: var(--ink);
+    border: 1px solid #737567;
+    z-index: 20;
+  }
+  .hero-topline {
+    font-size: 8px;
+  }
+  .hero-topline > span {
+    display: none;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    padding-top: 15px;
+    gap: 45px;
+  }
+  .iron-page h1 {
+    font-size: clamp(78px, 19vw, 120px);
+    letter-spacing: -2px;
+  }
+  .weight-poster {
+    margin: 0 8px;
+    transform: rotate(2deg);
+  }
+  .weight-poster svg {
+    max-height: 260px;
+  }
+  .weight-poster > p {
+    font-size: 44px;
+  }
+  .hero-rule {
+    flex-direction: column;
+  }
+  .manifesto-grid,
+  .section-title,
+  .iron-contact {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .iron-manifesto,
+  .iron-classes,
+  .iron-pricing {
+    padding: 65px 0;
+  }
+  .iron-page h2 {
+    font-size: 56px;
+  }
+  .pricing-header {
+    display: block;
+    margin-bottom: 30px;
+  }
+  .pricing-header > p {
+    max-width: none;
+  }
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+  .plan {
+    padding: 28px;
+    border-right: 1px solid #9e9e8d;
+  }
+  .plan:nth-child(n + 2) {
+    border-top: 0;
+  }
+  .iron-contact {
+    padding: 65px 0;
+    gap: 40px;
+  }
+  .iron-footer {
+    align-items: start;
+    flex-direction: column;
+  }
+  .class-list h3 {
+    font-size: 27px;
+  }
+  .class-list article {
+    padding: 24px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .iron-page *,
+  .iron-page *:before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.iron-page {
+  background: var(--ink);
+  color: var(--paper);
+}
+@media (max-width: 650px) {
+  .iron-page h1 {
+    font-size: clamp(58px, 15vw, 85px);
+    letter-spacing: -2px;
   }
 }
